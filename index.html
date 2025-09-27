@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tienda 3D - Objetos Impresos</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      background: #f9f9f9;
+      color: #333;
+    }
+
+    header {
+      background: #222;
+      color: #fff;
+      padding: 1rem;
+      text-align: center;
+    }
+
+    header h1 {
+      margin: 0;
+    }
+
+    nav {
+      margin-top: 10px;
+    }
+
+    nav a {
+      color: #fff;
+      margin: 0 15px;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    .productos {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+      padding: 20px;
+    }
+
+    .producto {
+      background: #fff;
+      padding: 15px;
+      border-radius: 10px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      text-align: center;
+    }
+
+    .producto img {
+      max-width: 100%;
+      border-radius: 10px;
+    }
+
+    .producto h3 {
+      margin: 10px 0;
+    }
+
+    .producto p {
+      color: #666;
+      font-weight: bold;
+    }
+
+    .producto button {
+      background: #28a745;
+      color: #fff;
+      border: none;
+      padding: 10px 15px;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    .producto button:hover {
+      background: #218838;
+    }
+
+    #carrito {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      background: #fff;
+      padding: 15px;
+      border-radius: 10px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+      width: 250px;
+    }
+
+    #carrito h2 {
+      margin-top: 0;
+    }
+
+    #carrito ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    #carrito ul li {
+      margin-bottom: 8px;
+    }
+
+    footer {
+      background: #222;
+      color: #fff;
+      text-align: center;
+      padding: 15px;
+      margin-top: 30px;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Tienda 3D</h1>
+    <nav>
+      <a href="#">Inicio</a>
+      <a href="#">Productos</a>
+      <a href="#">Contacto</a>
+    </nav>
+  </header>
+
+  <section class="productos">
+    <div class="producto">
+      <img src="https://via.placeholder.com/250" alt="Figura 3D">
+      <h3>Figura de Dragón</h3>
+      <p>25€</p>
+      <button onclick="agregarCarrito('Figura de Dragón', 25)">Añadir al carrito</button>
+    </div>
+
+    <div class="producto">
+      <img src="https://via.placeholder.com/250" alt="Vasija 3D">
+      <h3>Vasija decorativa</h3>
+      <p>18€</p>
+      <button onclick="agregarCarrito('Vasija decorativa', 18)">Añadir al carrito</button>
+    </div>
+
+    <div class="producto">
+      <img src="https://via.placeholder.com/250" alt="Llaveros 3D">
+      <h3>Llavero personalizado</h3>
+      <p>5€</p>
+      <button onclick="agregarCarrito('Llavero personalizado', 5)">Añadir al carrito</button>
+    </div>
+  </section>
+
+  <div id="carrito">
+    <h2>Carrito</h2>
+    <ul id="listaCarrito"></ul>
+    <p><strong>Total: </strong><span id="total">0</span> €</p>
+  </div>
+
+  <footer>
+    <p>&copy; 2025 Tienda 3D - Objetos Impresos | Contacto: info@tienda3d.com</p>
+  </footer>
+
+  <script>
+    let carrito = [];
+    let total = 0;
+
+    function agregarCarrito(producto, precio) {
+      carrito.push({ producto, precio });
+      total += precio;
+      actualizarCarrito();
+    }
+
+    function actualizarCarrito() {
+      const lista = document.getElementById('listaCarrito');
+      const totalSpan = document.getElementById('total');
+      lista.innerHTML = '';
+      carrito.forEach(item => {
+        const li = document.createElement('li');
+        li.textContent = item.producto + ' - ' + item.precio + '€';
+        lista.appendChild(li);
+      });
+      totalSpan.textContent = total;
+    }
+  </script>
+</body>
+</html>
